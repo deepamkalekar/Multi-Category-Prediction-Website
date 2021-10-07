@@ -8,10 +8,10 @@
       <div class="container">
 
         <div class="d-flex justify-content-between align-items-center">
-          <h2>Gold Price Prediction</h2>
+          <h2>Car Price Prediction</h2>
           <ol>
             <li><a href="/">Home</a></li>
-            <li>Gold Price Prediction</li>
+            <li>Car Price Prediction</li>
           </ol>
         </div>
 
@@ -23,36 +23,82 @@
     <section id="contact" class="contact">
         <div class="container">
             <div class="section-title" style="padding-bottom: 0px;">
-                <h2>Gold Price Prediction</h2>
+                <h2>Car Price Prediction</h2>
             </div>
             <div class="row mt-5">
-                <div class="col-lg-2"></div>  
+                <div class="col-lg-2"></div>
                 <div class="col-lg-8 mt-5 mt-lg-0">
-                    <form action="/predict_gold" method="post" class="php-email-form">
+                    <form action="/predict_loan" method="post" class="php-email-form">
                         <div class="row">
-                            <div class="col-md-6 form-group">
-                                <input type="text" name="SPX" class="form-control" id="SPX" placeholder="SPX (S&P 500 Index)" required>
+                            <div class="col-md-4">
+                                <select name="gend" id="gend" class="form-select"  required>
+                                    <option selected>Select Gender</option>
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                </select>
                             </div>
-                            <div class="col-md-6 form-group mt-3 mt-md-0">
-                                <input type="text" class="form-control" name="USO" id="USO" placeholder="USO" required>
+                            <div class="col-md-4 form-group mt-3 mt-md-0">
+                                <select name="marid" id="marid" class="form-select"  required>
+                                    <option selected>Select Marital Status </option>
+                                    <option value="Yes">Yes</option>
+                                    <option value="No">No</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4 form-group mt-3 mt-md-0">
+                                <input type="number" class="form-control" name="depnd" id="depnd" placeholder="Dependents" required>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-6 form-group">
-                                <input type="text" name="SLV" class="form-control" id="SLV" placeholder="Silver Price" required>
+                            <div class="col-md-4 form-group">
+                                <select name="edu" id="edu" class="form-select"  required>
+                                    <option selected>Select Education </option>
+                                    <option value="Graduate">Graduate</option>
+                                    <option value="Not_Graduate">Not Graduate</option>
+                                </select>
                             </div>
-                            <div class="col-md-6 form-group mt-3 mt-md-0">
-                                <input type="text" class="form-control" name="EUR_USD" id="EUR_USD" placeholder="EUR/USD Price" required>
+                            <div class="col-md-4 form-group mt-3 mt-md-0">
+                                <select name="slfemp" id="slfemp" class="form-select"  required>
+                                    <option selected>Select Self Employed Status </option>
+                                    <option value="Yes">Yes</option>
+                                    <option value="No">No</option>
+                                </select>
                             </div>
+                            <div class="col-md-4 form-group mt-3 mt-md-0">
+                                <input type="number" class="form-control" name="ainc" id="ainc" placeholder="Applicant Income" required>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4 form-group">
+                                <input type="number" name="cinc" class="form-control" id="cinc" placeholder="Co-applicant Income" required>
+                            </div>
+                            <div class="col-md-4 form-group mt-3 mt-md-0">
+                                <input type="number" class="form-control" name="LoanAmount" id="LoanAmount" placeholder="Loan Amount" required>
+                            </div>
+                            <div class="col-md-4 form-group mt-3 mt-md-0">
+                                <input type="number" class="form-control" name="lat" id="lat" placeholder="Loan Amount Term" required>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4"></div>
+                            <div class="col-md-4 form-group">
+                                <select name="pltarea" id="pltarea" class="form-select"  required>
+                                    <option selected>Select Property Area </option>
+                                    <option value="Rural">Rural</option>
+                                    <option value="Semiurban">Semiurban</option>
+                                    <option value="Urban">Urban</option>
+                                </select>
+                            </div>
+                           
+                            
                         </div>
                         
                         
                         <div class="text-center"><button type="submit" id="sub">Predict</button></div>
-                        {% if goldresult %}
+                        {% if loanresult %}
                         <div class="row" style="padding-top: 25px;">
                           <div class="col-md-12 ">
                             <div class="alert alert-success" role="alert">
-                              Predicted Gold Price For Given Value: {{ goldresult }}
+                              {{ loanresult }}
                             </div>
                           </div>
                         </div>
