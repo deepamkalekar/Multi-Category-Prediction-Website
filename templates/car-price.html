@@ -28,77 +28,55 @@
             <div class="row mt-5">
                 <div class="col-lg-2"></div>
                 <div class="col-lg-8 mt-5 mt-lg-0">
-                    <form action="/predict_loan" method="post" class="php-email-form">
+                    <form action="/predict_car" method="post" class="php-email-form">
                         <div class="row">
-                            <div class="col-md-4">
-                                <select name="gend" id="gend" class="form-select"  required>
-                                    <option selected>Select Gender</option>
-                                    <option value="Male">Male</option>
-                                    <option value="Female">Female</option>
-                                </select>
+                            <div class="col-md-6">
+                              <input type="number" class="form-control" name="year" id="year" placeholder="Year" required>
                             </div>
-                            <div class="col-md-4 form-group mt-3 mt-md-0">
-                                <select name="marid" id="marid" class="form-select"  required>
-                                    <option selected>Select Marital Status </option>
-                                    <option value="Yes">Yes</option>
-                                    <option value="No">No</option>
-                                </select>
-                            </div>
-                            <div class="col-md-4 form-group mt-3 mt-md-0">
-                                <input type="number" class="form-control" name="depnd" id="depnd" placeholder="Dependents" required>
+                            <div class="col-md-6 form-group mt-3 mt-md-0">
+                              <input type="number" class="form-control" name="Present_Price" id="Present_Price" placeholder="Showroom Price (In lakhs)" required>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-4 form-group">
-                                <select name="edu" id="edu" class="form-select"  required>
-                                    <option selected>Select Education </option>
-                                    <option value="Graduate">Graduate</option>
-                                    <option value="Not_Graduate">Not Graduate</option>
-                                </select>
-                            </div>
-                            <div class="col-md-4 form-group mt-3 mt-md-0">
-                                <select name="slfemp" id="slfemp" class="form-select"  required>
-                                    <option selected>Select Self Employed Status </option>
-                                    <option value="Yes">Yes</option>
-                                    <option value="No">No</option>
-                                </select>
-                            </div>
-                            <div class="col-md-4 form-group mt-3 mt-md-0">
-                                <input type="number" class="form-control" name="ainc" id="ainc" placeholder="Applicant Income" required>
-                            </div>
+                          <div class="col-md-6">
+                            <input type="number" class="form-control" name="Kms_Driven" id="Kms_Driven" placeholder="Kilometers Driven" required>
+                          </div>
+                          <div class="col-md-6 form-group mt-3 mt-md-0">
+                            <input type="number" class="form-control" name="Owners" id="Owners" placeholder="Previous Owners (0 or 1 or 3)" required>
+                          </div>
                         </div>
                         <div class="row">
                             <div class="col-md-4 form-group">
-                                <input type="number" name="cinc" class="form-control" id="cinc" placeholder="Co-applicant Income" required>
+                              <select name="Fuel_Type" id="Fuel_Type" class="form-select"  required>
+                                <option selected>Select Fuel Type </option>
+                                <option value="Petrol">Petrol</option>
+                                <option value="Diesel">Diesel</option>
+                                <option value="CNG">CNG</option>
+                              </select>
                             </div>
-                            <div class="col-md-4 form-group mt-3 mt-md-0">
-                                <input type="number" class="form-control" name="LoanAmount" id="LoanAmount" placeholder="Loan Amount" required>
-                            </div>
-                            <div class="col-md-4 form-group mt-3 mt-md-0">
-                                <input type="number" class="form-control" name="lat" id="lat" placeholder="Loan Amount Term" required>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-4"></div>
                             <div class="col-md-4 form-group">
-                                <select name="pltarea" id="pltarea" class="form-select"  required>
-                                    <option selected>Select Property Area </option>
-                                    <option value="Rural">Rural</option>
-                                    <option value="Semiurban">Semiurban</option>
-                                    <option value="Urban">Urban</option>
-                                </select>
+                              <select name="Seller_Type" id="Seller_Type" class="form-select"  required>
+                                <option selected>Select Seller Type</option>
+                                <option value="Dealer">Dealer</option>
+                                <option value="Individual">Individual</option>
+                              </select>
                             </div>
-                           
-                            
+                            <div class="col-md-4 form-group">
+                                <select name="Transmission_type" id="Transmission_type" class="form-select"  required>
+                                    <option selected>Select Transmission type</option>
+                                    <option value="Mannual">Mannual</option>
+                                    <option value="Automatic">Automatic</option>
+                                </select>
+                            </div>   
                         </div>
                         
                         
                         <div class="text-center"><button type="submit" id="sub">Predict</button></div>
-                        {% if loanresult %}
+                        {% if carresult %}
                         <div class="row" style="padding-top: 25px;">
                           <div class="col-md-12 ">
                             <div class="alert alert-success" role="alert">
-                              {{ loanresult }}
+                              {{ carresult }}
                             </div>
                           </div>
                         </div>

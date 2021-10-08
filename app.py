@@ -1,9 +1,15 @@
 from flask import Flask, render_template, request
 import pickle
 import numpy as np
+import sklearn
+from flask import jsonify
+from datetime import date
+
 
 goldmodel = pickle.load(open('GoldPriceDecisionTree.pkl', 'rb'))
 loanmodel = pickle.load(open('Loan_Status_RandomForest.pkl', 'rb'))
+carmodel = pickle.load(open('Car_price_randomforest_regression.pkl', 'rb'))
+
 app = Flask(__name__)
 
 @app.route('/')
@@ -89,6 +95,56 @@ def predict_loan_status():
         loanresult = 'Sorry, you are not eligible for Loan'
 
     return render_template('loan-status.html', loanresult=loanresult)
+
+@app.route('/predict_car', methods=['POST'])
+def predict_car_price():
+
+    year = int(request.form.get('year'))
+    Present_Price = float(request.form.get('Present_Price'))
+    Kms_Driven = int(request.form.get('Kms_Driven'))
+    Owners = int(request.form.get('Owners'))
+
+    Fuel_Type = request.form.get('Fuel_Type')
+    Fuel_Type_Petrol = 0
+    Fuel_Type_Diesel = 0
+    if (Fuel_Type == 'Petrol'):
+        Fuel_Type_Petrol = 1
+        Fuel_Type_Diesel = 0
+    elif (Fuel_Type == 'Diesel'):
+        Fuel_Type_Petrol = 0
+        Fuel_Type_Diesel = 1
+    else:
+        Fuel_Type_Petrol = 0
+        Fuel_Type_Diesel = 0
+
+    current_date = date.today()
+    year = current_date.year - year
+
+    Seller_Type = request.form.get('Seller_Type')
+    Seller_Type_Individual =0
+    if (Seller_Type == 'Individual'):
+        Seller_Type_Individual = 1
+    else:
+        Seller_Type_Individual = 0
+
+    Transmission_type = request.form.get('Transmission_type')
+    Transmission_Mannual = 0
+    if (Transmission_type == 'Mannual'):
+        Transmission_Mannual = 1
+    else:
+        Transmission_Mannual = 0
+
+    # Car Price Prediction
+    prediction = carmodel.predict([[Present_Price, Kms_Driven, Owners, year, Fuel_Type_Diesel, Fuel_Type_Petrol,
+                                 Seller_Type_Individual, Transmission_Mannual]])
+    output = round(prediction[0], 2)
+    if output < 0:
+        return render_template('car-price.html', carresult="Sorry you cannot sell this car")
+    else:
+        return render_template('car-price.html', carresult="You Can Sell The Car at {} lakh ".format(output))
+
+
+
 
 if __name__ == '__main__':
     app.run(debug=True)
