@@ -1,0 +1,256 @@
+{% extends "layout.html" %}
+{% block body %}
+
+  <main id="main">
+
+    <!-- ======= Breadcrumbs ======= -->
+    <section class="breadcrumbs">
+      <div class="container">
+
+        <div class="d-flex justify-content-between align-items-center">
+          <h2>Laptop Price Prediction</h2>
+          <ol>
+            <li><a href="/">Home</a></li>
+            <li>Laptop Price Prediction</li>
+          </ol>
+        </div>
+
+      </div>
+    </section><!-- End Breadcrumbs -->
+
+    
+      <!-- ======= Contact Section ======= -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-title" style="padding-bottom: 0px;">
+                <h2>Laptop Price Prediction</h2>
+            </div>
+            <div class="row mt-5">
+                <div class="col-lg-2"></div>
+                <div class="col-lg-8 mt-5 mt-lg-0">
+                    <form action="/predict_Laptop" method="post" class="php-email-form">
+                        <div class="row">
+                            <div class="col-md-4 form-group">
+                                <select name="Comp" id="Comp" class="form-select"  required>
+                                  <option selected>Select Company </option>
+                                  <option value="Apple">Apple</option>
+                                  <option value="HP">HP</option>
+                                  <option value="Acer">Acer</option>
+                                  <option value="Asus">Asus</option>
+                                  <option value="Dell">Dell</option>
+                                  <option value="Lenovo">Lenovo</option>
+                                  <option value="Chuwi">Chuwi</option>
+                                  <option value="MSI">MSI</option>
+                                  <option value="Microsoft">Microsoft</option>
+                                  <option value="Toshiba">Toshiba</option>
+                                  <option value="Huawei">Huawei</option>
+                                  <option value="Xiaomi">Xiaomi</option>
+                                  <option value="Vero">Vero</option>
+                                  <option value="Razer">Razer</option>
+                                  <option value="Mediacom">Mediacom</option>
+                                  <option value="Samsung">Samsung</option>
+                                  <option value="Google">Google</option>
+                                  <option value="Fujitsu">Fujitsu</option>
+                                  <option value="LG">LG</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4 form-group">
+                                <select name="Type" id="Type" class="form-select"  required>
+                                  <option selected>Select Laptop Type </option>
+                                  <option value="Ultrabook">Ultrabook</option>
+                                  <option value="Notebook">Notebook</option>
+                                  <option value="Netbook">Netbook</option>
+                                  <option value="2 in 1 Convertible">2 in 1 Convertible</option>
+                                  <option value="Workstation">Workstation</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4 form-group">
+                                <select name="ram" id="ram" class="form-select"  required>
+                                    <option selected>Select RAM(in GB) </option>
+                                    <option value="2">2</option>
+                                    <option value="4">4</option>
+                                    <option value="6">6</option>
+                                    <option value="8">8</option>
+                                    <option value="12">12</option>
+                                    <option value="16">16</option>
+                                    <option value="24">24</option>
+                                    <option value="32">32</option>
+                                    <option value="64">64</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-md-4">
+                            <input type="text" class="form-control" name="weight" id="weight" placeholder="Laptop Weight (kg)" required>
+                          </div>
+                          <div class="col-md-4 form-group">
+                            <select name="touch" id="touch" class="form-select"  required>
+                              <option selected>Select Touchscreen</option>
+                              <option value="No">No</option>
+                              <option value="Yes">Yes</option>
+                            </select>
+                          </div>
+                          <div class="col-md-4 form-group">
+                            <select name="ips" id="ips" class="form-select"  required>
+                              <option selected>Select IPS </option>
+                              <option value="No">No</option>
+                              <option value="Yes">Yes</option>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <input type="test" class="form-control" name="scr_sz" id="scr_sz" placeholder="Screen Size" required>
+                              </div>
+                              <div class="col-md-4 form-group">
+                                <select name="scr_res" id="scr_res" class="form-select"  required>
+                                  <option selected>Select Screen Resolution </option>
+                                  <option value="1920x1080">1920x1080</option>
+                                  <option value="1366x768">1366x768</option>
+                                  <option value="1600x900">1600x900</option>
+                                  <option value="3840x2160">3840x2160</option>
+                                  <option value="3200x1800">3200x1800</option>
+                                  <option value="2880x1800">2880x1800</option>
+                                  <option value="2560x1600">2560x1600</option>
+                                  <option value="2560x1440">2560x1440</option>
+                                  <option value="2304x1440">2304x1440</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4 form-group">
+                                <select name="CPU" id="CPU" class="form-select"  required>
+                                    <option selected>Select CPU </option>
+                                    <option value="Intel Core i5">Intel Core i5</option>
+                                    <option value="Intel Core i7">Intel Core i7</option>
+                                    <option value="AMD Processor">AMD Processor</option>
+                                    <option value="Intel Core i3">Intel Core i3</option>
+                                    <option value="Other Intel Processor">Other Intel Processor</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4 form-group">
+                                <select name="HDD" id="HDD" class="form-select"  required>
+                                  <option selected>Select HDD (GB) </option>
+                                  <option value="0">0</option>
+                                  <option value="128">128</option>
+                                  <option value="256">256</option>
+                                  <option value="512">512</option>
+                                  <option value="1024">1024</option>
+                                  <option value="2048">2048</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4 form-group">
+                                <select name="SSD" id="SSD" class="form-select"  required>
+                                  <option selected>Select SSD (GB) </option>
+                                  <option value="0">0</option>
+                                  <option value="8">8</option>
+                                  <option value="128">128</option>
+                                  <option value="256">256</option>
+                                  <option value="512">512</option>
+                                  <option value="1024">1024</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4 form-group">
+                                <select name="GPU" id="GPU" class="form-select"  required>
+                                    <option selected>Select GPU </option>
+                                    <option value="Intel">Intel</option>
+                                    <option value="AMD">AMD</option>
+                                    <option value="Nvidia">Nvidia</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4"></div>
+                            <div class="col-md-4 form-group">
+                                <select name="OS" id="OS" class="form-select"  required>
+                                    <option selected>Select OS </option>
+                                    <option value="Windows">Windows</option>
+                                    <option value="Mac">Mac</option>
+                                    <option value="Others/No OS/Linux">Others/No OS/Linux</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4 form-group"></div>  
+                        </div>
+
+                        <div class="text-center"><button type="submit" id="sub">Predict</button></div>
+
+                        {% if Laptopresult %}
+                        <div class="row" style="padding-top: 25px;">
+                          <div class="col-md-12 ">
+                            <div class="alert alert-success" role="alert">
+                              {{ Laptopresult }}
+                            </div>
+                          </div>
+                        </div>
+                        {% endif %}
+                    </form>
+                </div>
+            </div>
+  
+        </div>
+      </section><!-- End Contact Section -->
+    
+
+    <!-- ======= Services Section ======= -->
+    <section id="services" class="services section-bg">
+        <div class="container">
+  
+          <div class="section-title">
+            <h2>Services</h2>
+         
+          </div>
+  
+          <div class="row">
+            <div class="col-lg-4 col-md-6">
+              <div class="icon-box">
+                <div class="icon"><i class="bi bi-cash-stack" style="color: #ff689b;"></i></div>
+                <h4 class="title"><a href="/gold_price">Gold Price Prediction</a></h4>
+                <p class="description">Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident</p>
+              </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+              <div class="icon-box">
+                <div class="icon"><i class="bi bi-calendar4-week" style="color: #e9bf06;"></i></div>
+                <h4 class="title"><a href="/loan_status">Loan Status Prediction</a></h4>
+                <p class="description">Minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat tarad limino ata</p>
+              </div>
+            </div>
+  
+            <div class="col-lg-4 col-md-6" data-wow-delay="0.1s">
+              <div class="icon-box">
+                <div class="icon"><i class="bi bi-chat-text" style="color: #3fcdc7;"></i></div>
+                <h4 class="title"><a href="/car_price">Car Price Prediction</a></h4>
+                <p class="description">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur</p>
+              </div>
+            </div>
+            <div class="col-lg-4 col-md-6" data-wow-delay="0.1s">
+              <div class="icon-box">
+                <div class="icon"><i class="bi bi-credit-card-2-front" style="color:#41cf2e;"></i></div>
+                <h4 class="title"><a href="/laptop_price">Laptop Price Prediction</a></h4>
+                <p class="description">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+              </div>
+            </div>
+  
+            <div class="col-lg-4 col-md-6" data-wow-delay="0.2s">
+              <div class="icon-box">
+                <div class="icon"><i class="bi bi-globe" style="color: #d6ff22;"></i></div>
+                <h4 class="title"><a href="/home_price">Home Price Prediction</a></h4>
+                <p class="description">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque</p>
+              </div>
+            </div>
+            <div class="col-lg-4 col-md-6" data-wow-delay="0.2s">
+              <div class="icon-box">
+                <div class="icon"><i class="bi bi-clock" style="color: #4680ff;"></i></div>
+                <h4 class="title"><a href="">Eiusmod Tempor</a></h4>
+                <p class="description">Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi</p>
+              </div>
+            </div>
+          </div>
+  
+        </div>
+      </section><!-- End Services Section -->
+
+  </main><!-- End #main -->
+
+  
+  {% endblock %}

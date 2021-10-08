@@ -1,14 +1,19 @@
 from flask import Flask, render_template, request
 import pickle
 import numpy as np
+import pandas as pd
 import sklearn
 from flask import jsonify
 from datetime import date
 
+housedata = pd.read_csv('Datasets/house_loc_dataframe.csv')
 
 goldmodel = pickle.load(open('GoldPriceDecisionTree.pkl', 'rb'))
 loanmodel = pickle.load(open('Loan_Status_RandomForest.pkl', 'rb'))
 carmodel = pickle.load(open('Car_price_randomforest_regression.pkl', 'rb'))
+laptopmodel = pickle.load(open('Laptop_RandomForest_Regressor.pkl', 'rb'))
+housemodel = pickle.load(open('Banglore_house_LinearRegression.pkl', 'rb'))
+
 
 app = Flask(__name__)
 
@@ -35,7 +40,8 @@ def laptop_price():
 
 @app.route("/home_price")
 def home_price():
-    return render_template('house-price.html')
+    locations = sorted(housedata['location'].unique())
+    return render_template('house-price.html', locations=locations)
 
 
 
@@ -142,6 +148,68 @@ def predict_car_price():
         return render_template('car-price.html', carresult="Sorry you cannot sell this car")
     else:
         return render_template('car-price.html', carresult="You Can Sell The Car at {} lakh ".format(output))
+
+
+@app.route('/predict_Laptop', methods=['POST'])
+def predict_laptop_price():
+
+    Comp = request.form.get('Comp')
+    Type = request.form.get('Type')
+    ram = int(request.form.get('ram'))
+    weight = float(request.form.get('weight'))
+    touch = request.form.get('touch')
+    if (touch == 'Yes'):
+        touch = 1
+    else:
+        touch = 0
+
+    ips = request.form.get('weight')
+    if (ips == 'Yes'):
+        ips = 1
+    else:
+        ips = 0
+
+    scr_sz = float(request.form.get('scr_sz'))
+    scr_res = request.form.get('scr_res')
+    CPU = request.form.get('CPU')
+    HDD = int(request.form.get('HDD'))
+    SSD = int(request.form.get('SSD'))
+    GPU = request.form.get('GPU')
+    OS = request.form.get('OS')
+
+    # Coverting to PPI
+    X_res = int(scr_res.split('x')[0])
+    Y_res = int(scr_res.split('x')[1])
+    ppi = ((X_res ** 2) + (Y_res ** 2)) ** 0.5 / scr_sz
+
+    # Laptop Price Prediction
+    prediction = laptopmodel.predict(np.array([Comp, Type, ram, weight, touch, ips,
+                                 ppi, CPU, HDD, SSD, GPU, OS]).reshape(1,12))
+
+    output = round(prediction[0])
+    if output < 0:
+        return render_template('laptop-price.html', Laptopresult="Sorry insert valid value.")
+    else:
+        return render_template('laptop-price.html', Laptopresult="You Can Buy This Configuration Laptop at Approx. {}/- ".format(output))
+
+
+@app.route('/predict_house', methods=['POST'])
+def predict_house_price():
+    loc = request.form.get('loc')
+    area = request.form.get('area')
+    BHK = request.form.get('BHK')
+    Bath = request.form.get('Bath')
+
+    # house price prediction
+
+    housevalue = pd.DataFrame([[loc, area, Bath, BHK]], columns=['location', 'total_sqft', 'bath', 'bhk'])
+    houseresult = housemodel.predict(housevalue)[0] * 1e5
+
+    houseoutput = round(houseresult)
+    if houseoutput < 0:
+        return render_template('house-price.html', housetext="Sorry insert valid value.")
+    else:
+        return render_template('house-price.html', housetext="You Can Buy This House at Approx. {}/- ".format(houseoutput))
 
 
 

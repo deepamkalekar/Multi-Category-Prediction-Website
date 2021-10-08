@@ -1,1 +1,138 @@
+{% extends "layout.html" %}
+{% block body %}
+
+  <main id="main">
+
+    <!-- ======= Breadcrumbs ======= -->
+    <section class="breadcrumbs">
+      <div class="container">
+
+        <div class="d-flex justify-content-between align-items-center">
+          <h2>Banglore House Price Prediction</h2>
+          <ol>
+            <li><a href="/">Home</a></li>
+            <li>Banglore House Price Prediction</li>
+          </ol>
+        </div>
+
+      </div>
+    </section><!-- End Breadcrumbs -->
+
     
+      <!-- ======= Contact Section ======= -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-title" style="padding-bottom: 0px;">
+                <h2>Banglore House Price Prediction</h2>
+            </div>
+            <div class="row mt-5">
+                <div class="col-lg-2"></div>
+                <div class="col-lg-8 mt-5 mt-lg-0">
+                    <form action="/predict_house" method="post" class="php-email-form">
+                        <div class="row">
+                            <div class="col-md-6 form-group mt-3 mt-md-0">
+                                <select name="loc" id="loc" class= "form-select"  required>
+                                    <option selected>Select Location</option>
+                                    {% for location in locations %}
+                                        <option value="{{ location }}">{{ location }}</option>
+                                    {% endfor %}
+                                  </select>
+                            </div>
+                           
+                            <div class="col-md-6 form-group mt-3 mt-md-0">
+                                <input type="number" class="form-control" name="area" id="area" placeholder="Area (Square Feet)" required>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 form-group mt-3 mt-md-0">
+                                <input type="number" class="form-control" name="BHK" id="BHK" placeholder="BHK" required>
+                            </div>
+
+                            <div class="col-md-6 form-group mt-3 mt-md-0">
+                                <input type="number" class="form-control" name="Bath" id="Bath" placeholder="Bathroom" required>
+                            </div>
+                        </div>
+                        
+                        
+                        
+                        <div class="text-center"><button type="submit" id="sub">Predict</button></div>
+                        {% if housetext %}
+                        <div class="row" style="padding-top: 25px;">
+                          <div class="col-md-12 ">
+                            <div class="alert alert-success" role="alert">
+                              {{ housetext }}
+                            </div>
+                          </div>
+                        </div>
+                        {% endif %}
+                    </form>
+                </div>
+            </div>
+  
+        </div>
+      </section><!-- End Contact Section -->
+    
+
+    <!-- ======= Services Section ======= -->
+    <section id="services" class="services section-bg">
+        <div class="container">
+  
+          <div class="section-title">
+            <h2>Services</h2>
+         
+          </div>
+  
+          <div class="row">
+            <div class="col-lg-4 col-md-6">
+              <div class="icon-box">
+                <div class="icon"><i class="bi bi-cash-stack" style="color: #ff689b;"></i></div>
+                <h4 class="title"><a href="/gold_price">Gold Price Prediction</a></h4>
+                <p class="description">Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident</p>
+              </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+              <div class="icon-box">
+                <div class="icon"><i class="bi bi-calendar4-week" style="color: #e9bf06;"></i></div>
+                <h4 class="title"><a href="/loan_status">Loan Status Prediction</a></h4>
+                <p class="description">Minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat tarad limino ata</p>
+              </div>
+            </div>
+  
+            <div class="col-lg-4 col-md-6" data-wow-delay="0.1s">
+              <div class="icon-box">
+                <div class="icon"><i class="bi bi-chat-text" style="color: #3fcdc7;"></i></div>
+                <h4 class="title"><a href="/car_price">Car Price Prediction</a></h4>
+                <p class="description">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur</p>
+              </div>
+            </div>
+            <div class="col-lg-4 col-md-6" data-wow-delay="0.1s">
+              <div class="icon-box">
+                <div class="icon"><i class="bi bi-credit-card-2-front" style="color:#41cf2e;"></i></div>
+                <h4 class="title"><a href="/laptop_price">Laptop Price Prediction</a></h4>
+                <p class="description">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+              </div>
+            </div>
+  
+            <div class="col-lg-4 col-md-6" data-wow-delay="0.2s">
+              <div class="icon-box">
+                <div class="icon"><i class="bi bi-globe" style="color: #d6ff22;"></i></div>
+                <h4 class="title"><a href="/home_price">Home Price Prediction</a></h4>
+                <p class="description">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque</p>
+              </div>
+            </div>
+            <div class="col-lg-4 col-md-6" data-wow-delay="0.2s">
+              <div class="icon-box">
+                <div class="icon"><i class="bi bi-clock" style="color: #4680ff;"></i></div>
+                <h4 class="title"><a href="">Eiusmod Tempor</a></h4>
+                <p class="description">Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi</p>
+              </div>
+            </div>
+          </div>
+  
+        </div>
+      </section><!-- End Services Section -->
+
+  </main><!-- End #main -->
+
+  
+  {% endblock %}
