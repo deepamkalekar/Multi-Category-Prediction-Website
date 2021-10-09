@@ -13,6 +13,7 @@ loanmodel = pickle.load(open('Loan_Status_RandomForest.pkl', 'rb'))
 carmodel = pickle.load(open('Car_price_randomforest_regression.pkl', 'rb'))
 laptopmodel = pickle.load(open('Laptop_RandomForest_Regressor.pkl', 'rb'))
 housemodel = pickle.load(open('Banglore_house_LinearRegression.pkl', 'rb'))
+caloriesmodel = pickle.load(open('Calories_burn_DecisionTree.pkl', 'rb'))
 
 
 app = Flask(__name__)
@@ -43,7 +44,9 @@ def home_price():
     locations = sorted(housedata['location'].unique())
     return render_template('house-price.html', locations=locations)
 
-
+@app.route("/calories_cal")
+def calories_cal():
+    return render_template('calories-cal.html')
 
 
 @app.route('/predict_gold', methods=['POST'])
@@ -55,8 +58,8 @@ def predict_gold_price():
 
     #gold price prediction
     goldresult = goldmodel.predict(np.array([SPX, USO, SLV, EUR_USD]).reshape(1,4))
-
-    return render_template('gold-price.html', goldresult=goldresult)
+    goldoutput = np.round(goldresult, 2)
+    return render_template('gold-price.html', goldresult="Predicted Gold Price For Given Value:  {}/- ".format(goldoutput))
 
 @app.route('/predict_loan', methods=['POST'])
 def predict_loan_status():
@@ -210,6 +213,30 @@ def predict_house_price():
         return render_template('house-price.html', housetext="Sorry insert valid value.")
     else:
         return render_template('house-price.html', housetext="You Can Buy This House at Approx. {}/- ".format(houseoutput))
+
+
+@app.route('/predict_calories', methods=['POST'])
+def predict_calories_cal():
+    gender = request.form.get('gender')
+    age = request.form.get('age')
+    Height = request.form.get('Height')
+    Weight = request.form.get('Weight')
+    Duration = request.form.get('Duration')
+    Heart_Rate = request.form.get('Heart_Rate')
+    Body_Temp = request.form.get('Body_Temp')
+
+    # calories burn prediction
+
+
+    calvalue = pd.DataFrame([[gender, age, Height, Weight, Duration, Heart_Rate,Body_Temp]],
+                              columns=['Gender', 'Age', 'Height', 'Weight', 'Duration', 'Heart_Rate', 'Body_Temp'])
+    prediction = caloriesmodel.predict(calvalue)[0]
+
+    caloutput = round(prediction)
+    if caloutput < 0:
+        return render_template('calories-cal.html', caltext="Sorry insert valid value.")
+    else:
+        return render_template('calories-cal.html', caltext="Great Work...!!! You burned {} calories ".format(caloutput))
 
 
 
