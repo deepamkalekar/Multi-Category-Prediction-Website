@@ -1,0 +1,6 @@
+flask
+numpy
+pandas
+datetime
+sklearn
+pickle
