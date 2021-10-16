@@ -3,4 +3,3 @@ numpy
 pandas
 datetime
 sklearn
-pickle
