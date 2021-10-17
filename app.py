@@ -2,6 +2,7 @@ from flask import Flask, render_template, request
 import pickle
 import numpy as np
 import pandas as pd
+from xgboost import XGBRegressor
 import sklearn
 from flask import jsonify
 from datetime import date
