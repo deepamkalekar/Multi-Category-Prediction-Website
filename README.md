@@ -5,7 +5,7 @@ The aim of this project is to provide different prediction services at one place
 In this website there are **6** different prediction **services** which is build using 
 **Data Analysis Techniques** and **Machine Learning Algorithms**.
 
-**Deployed on Heroku**: [Predictions.com (Website Link) ](https://thepredictionapp.herokuapp.com/?target=_blank)
+**Deployed on Heroku**: [Predictions.com (Website Link) ](https://thepredictionapp.herokuapp.com/" target="_blank)
 
 
 
